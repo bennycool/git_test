@@ -1,3 +1,0 @@
-It's another file for git testing1!
-aaaaa1;
-
