@@ -46,8 +46,5 @@
     History Records: <textarea name="historyRecords" rows="10" cols="30"><%=session.getAttribute("userBean") %></textarea><br>
     <input type="submit" name="getRecords" value="Get Records"  formmethod="get">
 </form>
-
-
-
 </body>
 </html>
