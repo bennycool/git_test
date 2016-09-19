@@ -5,12 +5,33 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
+  <welcome-file-list>
+    <welcome-file>/login.jsp</welcome-file>
+  </welcome-file-list>
+
   <servlet>
     <servlet-name>TestServlet</servlet-name>
     <servlet-class>TestServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GetRecordsSevlet</servlet-name>
+    <servlet-class>GetRecordsServlet</servlet-class>
+  </servlet>
+  
   <servlet-mapping>
     <servlet-name>TestServlet</servlet-name>
     <url-pattern>/TestServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetRecordsSevlet</servlet-name>
+    <url-pattern>/GetRecordsServlet</url-pattern>
   </servlet-mapping>
 </web-app>

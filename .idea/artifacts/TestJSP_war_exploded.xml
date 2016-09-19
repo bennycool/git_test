@@ -6,6 +6,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="TestJSP" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: xstream:xstream:1.1.3" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.6" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/Testjsp/META-INF/MANIFEST.MF" />

@@ -37,14 +37,26 @@
     <%--&lt;%&ndash;}&ndash;%&gt;--%>
 <%--%>--%>
 
+
 <html>
+<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 <body>
+<div>Welcome,<%=session.getAttribute("userName")%>!</div><br>
 <form action="TestServlet" method="post">
-    User: <input type="text" name="user"><br>
-    InputBox: <textarea name="inputBox" rows="10" cols="30"></textarea><br>
-    <input type="submit" name="send" value="Send"><br>
-    History Records: <textarea name="historyRecords" rows="10" cols="30"><%=session.getAttribute("userBean") %></textarea><br>
-    <input type="submit" name="getRecords" value="Get Records"  formmethod="get">
+    <textarea name="inputBox" rows="10" cols="50"></textarea><br>
+    To: <input name="receiver">
+    <input type="submit" name="send" value="Send"><br><br>
 </form>
+<form action="GetRecordsServlet" method="get">
+    <%--根据时间信息调回记录或者调回全部记录--%>
+    <input type="submit" name="getAllRecords" value="Get All Records" ><br>
+</form>
+<form action="GetRecordsServlet" method="post">
+    start time: <input name="year1">-<input name="month1">-<input name="date1"> <input name="hour1">:<input name="minute1">:<input name="second1"><br>
+    end time: <input name="year2">-<input name="month2">-<input name="date2"> <input name="hour2">:<input name="minute2">:<input name="second2">
+    <%--<input type="text" id="startTime" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd HH:mm:ss'})"/>--%>
+    <input type="submit" value="Get Records">
+</form>
+<textarea name="historyRecords" rows="10" cols="50" ><%=session.getAttribute("records")%></textarea><br>
 </body>
 </html>
