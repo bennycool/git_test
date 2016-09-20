@@ -21,6 +21,10 @@
     <servlet-name>GetRecordsSevlet</servlet-name>
     <servlet-class>GetRecordsServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>SubmitServlet</servlet-name>
+    <servlet-class>SubmitServlet</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>TestServlet</servlet-name>
@@ -34,4 +38,9 @@
     <servlet-name>GetRecordsSevlet</servlet-name>
     <url-pattern>/GetRecordsServlet</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SubmitServlet</servlet-name>
+    <url-pattern>/SubmitServlet</url-pattern>
+  </servlet-mapping>
+
 </web-app>
