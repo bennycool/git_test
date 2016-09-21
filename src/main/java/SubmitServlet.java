@@ -8,6 +8,9 @@ import java.io.IOException;
  * Created by Administrator on 2016/9/20.
  */
 public class SubmitServlet extends HttpServlet {
+
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -24,14 +27,17 @@ public class SubmitServlet extends HttpServlet {
             req.getRequestDispatcher("/LoginServlet").forward(req,resp);
         }
         else{
+            //发送信息
             if(btn1!=null){
-                
+                req.getRequestDispatcher("/TestServlet").forward(req,resp);
             }
+            //得到当前用户所有通信记录
             else if(btn2!=null){
-
+                req.getRequestDispatcher("/GetRecordsServlet").forward(req,resp);
             }
+            //得到当前用户特定时间段通信记录
             else if(btn3!=null){
-
+                req.getRequestDispatcher("/GetRecordsServlet").forward(req,resp);
             }
         }
 

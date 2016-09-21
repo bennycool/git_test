@@ -42,6 +42,7 @@
 <script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
 <body>
 <div>Welcome,<%=session.getAttribute("userName")%>!</div><br>
+<textarea name="contacts" rows="10" cols="10" ><%=session.getAttribute("contacts")%></textarea><br>
 <form action="SubmitServlet" method="post">
     <textarea name="inputBox" rows="10" cols="50"></textarea><br>
     To: <input name="receiver">
