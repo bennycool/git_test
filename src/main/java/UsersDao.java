@@ -38,13 +38,13 @@ public class UsersDao {
             client = new Socket("127.0.0.1", 10245);
             Writer out = new OutputStreamWriter(client.getOutputStream(), "GBK");
             //client.setSoTimeout(8000);
-            String input =userBean.Serialized();
-            if(!input.equals("")) {
+            String input = userBean.Serialized();
+            if(!input.isEmpty()) {
                 out.write(input + "\r\n");
                 out.flush();
             }
 
-            if(userBean.getAct().equals("GetContacts")){
+            if(userBean.getAct().equals("GetContacts")||userBean.getAct().equals("GetSpecificRecords")){
                 BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 in.read(msg,0,2048);
                 System.out.println("received");
@@ -64,18 +64,17 @@ public class UsersDao {
                 e.printStackTrace();
             }
         }
-        String ret = new String(msg);
-        return ret;
+        return new String(msg);
     }
 
     public void WriteRecordstoFile(UserBean userBean){
 //        写入file部分
         if(userBean.getAct().equalsIgnoreCase("Send")){
             String file = path+userBean.getUserName()+".txt";
-            String input = userBean.getRecords();
+            String input = userBean.getMessage();
             try {
                 FileOutputStream of = new FileOutputStream(file,true);
-                of.write((userBean.getTimeData().toString()+" "+"to:"+userBean.getReceiver()+" ").getBytes("utf-8"));
+                of.write((userBean.getSendTime().toString()+" "+"to:"+userBean.getReceiver()+" ").getBytes("utf-8"));
                 of.write((input+"\n").getBytes("utf-8"));
                 of .close();;
             }catch (IOException e){
