@@ -44,16 +44,15 @@ public class UsersDao {
                 out.flush();
             }
 
-            if(userBean.getAct().equals("GetContacts")||userBean.getAct().equals("GetSpecificRecords")){
-                BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                in.read(msg,0,2048);
-                System.out.println("received");
+            BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+            in.read(msg,0,2048);
+            System.out.println("received");
                 /*while (msg==null)
                 {
                     in.read(msg,0,1024);
                 }*/
-                System.out.println(new String(msg)+"/");
-            }
+            System.out.println(new String(msg)+"/");
+
         }  catch (IOException e) {
             e.printStackTrace();
         }

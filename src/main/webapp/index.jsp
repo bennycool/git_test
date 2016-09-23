@@ -36,11 +36,66 @@
         <%--&lt;%&ndash;}&ndash;%&gt;--%>
     <%--&lt;%&ndash;}&ndash;%&gt;--%>
 <%--%>--%>
-
-
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+    if(request.getAttribute("records")==null) request.setAttribute("records","Records");
+%>
 <html>
-<script type="text/javascript" src="My97DatePicker/WdatePicker.js"></script>
+<meta charset="utf-8">
+
 <body>
+<script type="text/javascript" src="/My97DatePicker/WdatePicker.js"></script>
+<script>
+    var xmlhttp;
+    function myFunction() {
+
+        if(window.XMLHttpRequest){
+            xmlhttp = new XMLHttpRequest();
+        }
+        else{
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+//            alert(xmlhttp.readyState+","+xmlhttp.status);
+            if(xmlhttp.readyState==4){
+                if(xmlhttp.status==200){
+                    document.getElementById("historyRecords").innerText = xmlhttp.responseText;
+
+                }
+            }
+        }
+        startTime = document.getElementById("startTime").value;
+        endTime = document.getElementById("endTime").value;
+        var param;
+        param = "startTime="+startTime+"&endTime="+endTime;
+        //alert(param);
+        xmlhttp.open("POST","/GetRecordsServlet",true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+        //xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        xmlhttp.send(param);
+    }
+    
+    function myFun() {
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4) {
+                if (xmlhttp.status == 200) {
+                    document.getElementById("historyRecords").innerHTML = xmlhttp.responseText;
+
+                }
+            }
+        }
+        xmlhttp.open("GET","/GetRecordsServlet",true);
+        xmlhttp.send();
+    }
+</script>
+
+
 <div>Welcome,<%=session.getAttribute("userName")%>!</div><br>
 
 <form action="SubmitServlet" method="post">
@@ -50,16 +105,15 @@
     To: <input name="receiver">
     <input type="submit" name="SendMsg" value="Send"><br><br>
 </form>
-<form action="SubmitServlet" method="get">
-    <%--根据时间信息调回记录或者调回全部记录--%>
-    <input type="submit" name="GetAllRecords" value="Get All Records" ><br>
+<input type="button" name="GetAllRecords" value="Get All Records" onclick="myFun()"><br>
+
+<form id="timeForm" >
+    start time:<input type="text" name="startTime" class="Wdate" id="startTime" onclick="WdatePicker({dateFmt:'yyyy/MM/dd HH:mm:ss'})"/><br>
+    end time: <input type="text" class="Wdate" name="endTime" id="endTime" onclick="WdatePicker({dateFmt:'yyyy/MM/dd HH:mm:ss'})"/>
+    <input type="button" name="GetSpecificRecords" value="Get Records" onclick="myFunction()">
 </form>
-<form action="SubmitServlet" method="post">
-    start time: <input name="year1" value="1">-<input name="month1" value="1">-<input name="date1" value="1"> <input name="hour1" value="1">:<input name="minute1" value="1">:<input name="second1" value="1"><br>
-    end time: <input name="year2" value="2016">-<input name="month2"value="9">-<input name="date2" value="18"> <input name="hour2" value="13">:<input name="minute2" value="30">:<input name="second2" value="0">
-    <%--<input type="text" id="startTime" class="Wdate" onfocus="WdatePicker({dateFmt:'yyyy/MM/dd HH:mm:ss'})"/>--%>
-    <input type="submit" name="GetSpecificRecords" value="Get Records">
-</form>
-<textarea name="historyRecords" rows="10" cols="50"  ><%=request.getAttribute("records")%></textarea><br>
+<textarea id="historyRecords" name="historyRecords" rows="10" cols="50" >
+</textarea><br>
+
 </body>
 </html>

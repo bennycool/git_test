@@ -8,7 +8,6 @@
   <welcome-file-list>
     <welcome-file>/login.jsp</welcome-file>
   </welcome-file-list>
-
   <servlet>
     <servlet-name>TestServlet</servlet-name>
     <servlet-class>TestServlet</servlet-class>
@@ -42,5 +41,6 @@
     <servlet-name>SubmitServlet</servlet-name>
     <url-pattern>/SubmitServlet</url-pattern>
   </servlet-mapping>
+
 
 </web-app>
